@@ -1,4 +1,4 @@
-FROM node:alpine3.10 as build-step
+FROM node:18-alpine AS build
 
 RUN mkdir /app
 WORKDIR /app
