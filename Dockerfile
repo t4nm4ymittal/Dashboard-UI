@@ -1,14 +1,12 @@
-FROM node:18-alpine AS build
+FROM node:latest
 
-RUN mkdir /app
-WORKDIR /app
+WORKDIR /react-docker-example/
 
-COPY package.json /app
-RUN npm install  --legacy-peer-deps
-COPY . /app
+COPY public/ /react-docker-example/public
+COPY src/ /react-docker-example/src
+COPY package.json /react-docker-example/
 
-RUN npm run build
+RUN npm install
 
-#Run Steps
-FROM nginx:1.19.8-alpine  
-COPY --from=build-step /app/build /usr/share/nginx/html
+CMD ["npm", "start"]
+
