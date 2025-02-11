@@ -2,18 +2,11 @@ FROM node:latest
 
 WORKDIR /react-docker-example/
 
-# Set correct permissions for node_modules
-RUN mkdir -p /react-docker-example/node_modules && chmod -R 777 /react-docker-example
-
-COPY package.json package-lock.json* /react-docker-example/
-
-RUN npm install --legacy-peer-deps
-
 COPY public/ /react-docker-example/public
 COPY src/ /react-docker-example/src
+COPY package.json /react-docker-example/
 
-# Ensure the app runs on all network interfaces
-ENV HOST 0.0.0.0
-EXPOSE 8080
+RUN npm install --legacy-peer-deps
+RUN mkdir node_modules/.cache && chmod -R 777 node_modules/.cache
 
 CMD ["npm", "start"]
