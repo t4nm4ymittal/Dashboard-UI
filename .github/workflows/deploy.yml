@@ -29,7 +29,10 @@ jobs:
       run: |
         oc project t4nm4y-dev
 
-
+    - name: Install Node.js Dependencies
+      run: |
+        npm install --legacy-peer-deps
+        
     - name: Create New OpenShift Build (if needed)
       run: |
         if ! oc get bc dashboard-react; then
