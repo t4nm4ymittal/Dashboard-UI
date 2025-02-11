@@ -52,16 +52,20 @@ jobs:
           oc rollout restart deployment/dashboard-react
         fi
 
-    - name: Expose OpenShift Service
+    - name: Expose OpenShift Service on Port 3000
       run: |
-        if ! oc get svc dashboard-react; then
-          oc expose deployment dashboard-react --port=8080 --name=dashboard-react
+        if oc get svc dashboard-react; then
+          oc patch svc dashboard-react --type='json' -p '[{"op": "replace", "path": "/spec/ports/0/targetPort", "value":3000}]'
+        else
+          oc expose deployment dashboard-react --port=3000 --name=dashboard-react
         fi
 
-    - name: Create OpenShift Route
+    - name: Create OpenShift Route for Port 3000
       run: |
         if ! oc get route dashboard-react; then
           oc expose svc/dashboard-react
+        else
+          oc patch route dashboard-react --type='json' -p '[{"op": "replace", "path": "/spec/port/targetPort", "value":3000}]'
         fi
 
     - name: Secure Route with HTTPS
