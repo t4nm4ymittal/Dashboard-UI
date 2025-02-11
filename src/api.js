@@ -1,4 +1,4 @@
-const API_URL = "http://dashboard-backend-git-t4nm4y-dev.apps.rm3.7wse.p1.openshiftapps.com/metrics"; // Replace with your backend API
+const API_URL = "https://dashboard-backend-t4nm4y-dev.apps.rm3.7wse.p1.openshiftapps.com/metrics"; // Replace with your backend API
 
 export async function fetchMetrics() {
   try {
