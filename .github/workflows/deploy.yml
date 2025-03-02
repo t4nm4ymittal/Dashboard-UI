@@ -23,7 +23,7 @@ jobs:
 
     - name: Login to OpenShift
       run: |
-        oc login --token=sha256~hNNyjFjRnZQgPt4oDsnNAV6mKH434F20aC9PFsVMhAI --server=https://api.rm3.7wse.p1.openshiftapps.com:6443 --insecure-skip-tls-verify
+        oc login --token=sha256~scLDlryqjNTj-C2UQGlqR6ea9aURkKF1K1XOALah2V8  --server=https://api.rm3.7wse.p1.openshiftapps.com:6443 --insecure-skip-tls-verify
 
     - name: Set OpenShift Project
       run: |
